@@ -1,4 +1,4 @@
-# Scrapy settings for jobparser project
+# Scrapy settings for leroymerlin_parser project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,13 +7,22 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'jobparser'
+BOT_NAME = 'leroymerlin_parser'
 
-SPIDER_MODULES = ['jobparser.spiders']
-NEWSPIDER_MODULE = 'jobparser.spiders'
+IMAGES_STORE = 'images'
+
+SPIDER_MODULES = ['leroymerlin_parser.spiders']
+NEWSPIDER_MODULE = 'leroymerlin_parser.spiders'
+
 
 LOG_ENABLED = True
-LOG_LEVEL = 'DEBUG'  #ERROR INFO WARN
+LOG_LEVEL = 'DEBUG'
+
+IMAGES_STORE = 'images'
+# IMAGES_THUMBS = {'medium': (320, 240),
+#                  'small': (160, 120)}
+
+COOKIES_ENABLED = True
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.116 Safari/537.36'
@@ -21,16 +30,17 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, li
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 8
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 0
 # The download delay setting will honor only one of:
-# CONCURRENT_REQUESTS_PER_DOMAIN = 16
-# CONCURRENT_REQUESTS_PER_IP = 16
+#CONCURRENT_REQUESTS_PER_DOMAIN = 16
+#CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = True
@@ -47,13 +57,13 @@ COOKIES_ENABLED = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'jobparser.middlewares.JobparserSpiderMiddleware': 543,
+#    'leroymerlin_parser.middlewares.LeroymerlinParserSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'jobparser.middlewares.JobparserDownloaderMiddleware': 543,
+#    'leroymerlin_parser.middlewares.LeroymerlinParserDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +75,8 @@ COOKIES_ENABLED = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'jobparser.pipelines.JobparserPipeline': 300,
+   'leroymerlin_parser.pipelines.LeroymerlinParserPipeline': 300,
+   'leroymerlin_parser.pipelines.LeroymerlinPhotosPipeline': 200,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
